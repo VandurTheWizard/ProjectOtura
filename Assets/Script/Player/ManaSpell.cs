@@ -4,6 +4,6 @@ public interface ManaSpell
 {
     public int getManaSpell();
     public int getSpellValue();
-    public int SpellAttack();
+    public void SpellAttack();
 
 }

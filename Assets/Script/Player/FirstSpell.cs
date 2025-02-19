@@ -14,10 +14,9 @@ public class FirstSpell : MonoBehaviour, ManaSpell
         return spellValue;
     }
 
-    public int SpellAttack()
+    public void SpellAttack()
     {
-        Debug.Log(2);
-        return 0;
+      
     }
 
  
