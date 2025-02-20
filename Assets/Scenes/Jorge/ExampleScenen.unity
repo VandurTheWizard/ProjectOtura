@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 34889542}
   - component: {fileID: 34889541}
   m_Layer: 5
-  m_Name: Image (6)
+  m_Name: Spell4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 234717906}
   - component: {fileID: 234717905}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: Spell2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 330316938}
   - component: {fileID: 330316937}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: Spell3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 388039029}
   - component: {fileID: 388039028}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: ManaProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -509,8 +509,9 @@ GameObject:
   - component: {fileID: 537437628}
   - component: {fileID: 537437630}
   - component: {fileID: 537437629}
+  - component: {fileID: 537437631}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -531,9 +532,9 @@ RectTransform:
   - {fileID: 388039027}
   m_Father: {fileID: 1484075880}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.0000047088, y: 169}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 39.2848, y: 99.289}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537437629
@@ -574,6 +575,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537437627}
   m_CullTransparentMesh: 1
+--- !u!114 &537437631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537437627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84161ed092673474f81cb0b43821ab87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 388039028}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,7 +782,6 @@ RectTransform:
   - {fileID: 1538851080}
   - {fileID: 1484075880}
   - {fileID: 2124761752}
-  - {fileID: 1613055006}
   - {fileID: 2039545652}
   - {fileID: 234717904}
   - {fileID: 330316936}
@@ -897,8 +910,9 @@ GameObject:
   - component: {fileID: 1307383277}
   - component: {fileID: 1307383279}
   - component: {fileID: 1307383278}
+  - component: {fileID: 1307383280}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -962,6 +976,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307383276}
   m_CullTransparentMesh: 1
+--- !u!114 &1307383280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307383276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79c890b33a71f74281a40fb075c8a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1389933654}
 --- !u!1 &1389933652
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,7 +1001,7 @@ GameObject:
   - component: {fileID: 1389933655}
   - component: {fileID: 1389933654}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: LifeProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1049,7 +1076,7 @@ GameObject:
   - component: {fileID: 1484075882}
   - component: {fileID: 1484075881}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: Mana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1125,7 +1152,7 @@ GameObject:
   - component: {fileID: 1538851082}
   - component: {fileID: 1538851081}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Life
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1330,8 +1357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d747532183c45ae48b4b8a2b28f5416a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mana: 0
-  maxMana: 0
+  mana: 4
+  maxMana: 5
 --- !u!114 &1577943515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1344,8 +1371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5669ee2653c150c49a3619772f0c0024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaValue: 0
-  spellValue: 0
+  manaValue: 4
+  spellValue: 5
 --- !u!114 &1577943516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1372,7 +1399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d509e531c585f44be7b25ae9c781f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lv: 0
+  lv: 4
   exp: 0
   restExp: 1050
 --- !u!1 &1613055005
@@ -1387,7 +1414,7 @@ GameObject:
   - component: {fileID: 1613055008}
   - component: {fileID: 1613055007}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ExperienceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1400,16 +1427,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613055005}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.33333328, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 778548815}
+  m_Father: {fileID: 2124761752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.99999046, y: 25}
+  m_AnchoredPosition: {x: -0.000019311905, y: 124.14471}
   m_SizeDelta: {x: 135.7859, y: 16.9516}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1613055007
@@ -1699,7 +1726,7 @@ GameObject:
   - component: {fileID: 1929317129}
   - component: {fileID: 1929317128}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: ExperienceProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1774,7 +1801,7 @@ GameObject:
   - component: {fileID: 2039545654}
   - component: {fileID: 2039545653}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Spell1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1848,8 +1875,9 @@ GameObject:
   - component: {fileID: 2124761752}
   - component: {fileID: 2124761754}
   - component: {fileID: 2124761753}
+  - component: {fileID: 2124761755}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Experience
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1868,6 +1896,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1929317127}
+  - {fileID: 1613055006}
   m_Father: {fileID: 778548815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -1913,6 +1942,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124761751}
   m_CullTransparentMesh: 1
+--- !u!114 &2124761755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124761751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36fe2dc596af3554d9a1f613d7c62fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1929317128}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
