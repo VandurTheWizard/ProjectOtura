@@ -607,6 +607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alma
       objectReference: {fileID: 0}
+    - target: {fileID: 5259437680857111856, guid: 45851ba87f1a4174d9f32d40960591c8, type: 3}
+      propertyPath: experience
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
