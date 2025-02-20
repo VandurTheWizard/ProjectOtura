@@ -4,6 +4,7 @@ public class EfectoAlma : MonoBehaviour
 {
     [Header("Ajustes Básicos")]
     public float speed = 5.0f;
+    public int experience = 40;
 
     private GameObject player;
 
@@ -26,7 +27,7 @@ public class EfectoAlma : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Alma Recogida: Adjuntar script de objención de alma");
+            other.gameObject.GetComponent<ExperienceUsage>().exp += experience;
             Destroy(gameObject);
         }
     }
