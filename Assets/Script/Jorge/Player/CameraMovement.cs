@@ -4,7 +4,7 @@ public class CameraMovement : MonoBehaviour
 {
     public int sensitivity = 200;
 
-    private float xRotation = 0f;
+    private float xRotation = 15f;
     private float yRotation = 0f;
     
     void Start()

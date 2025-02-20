@@ -4,7 +4,8 @@ public class ManaUsage : MonoBehaviour
 {
     public ManaSpell [] spells;
 
-    private const int FUEGO = 0;
+    public int mana = 0;
+    public int maxMana = 5;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,13 +16,6 @@ public class ManaUsage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < spells.Length; i++)
-        {
-            if (spells[i].getSpellValue() == FUEGO)
-            {
-                spells[0].SpellAttack();
-            }
-        }
         
     }
 }
