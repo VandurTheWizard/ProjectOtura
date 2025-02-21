@@ -1,7 +1,9 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemiesSee : MonoBehaviour
 {
     public float visionRange = 10f;
