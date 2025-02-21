@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface EnemiesStatus
 {
-    public void patroll();
+    public void onPatroll();
     public void onVision();
     public void onAttack();
     
