@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,8 +12,7 @@ public class EnemiesSee : MonoBehaviour
 
     private Transform player;
 
-    private NavMeshAgent agent;
-    private EnemieAction action;
+    private EnemiesStatus action;
 
     private bool canSeePlayer = false;
 
@@ -20,7 +20,6 @@ public class EnemiesSee : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
         action = GetComponent<EnemieAction>();
     }
     void Update()
@@ -29,14 +28,13 @@ public class EnemiesSee : MonoBehaviour
         Debug.Log(canSeePlayer);
         if (canSeePlayer)
         {
-
+            action.onVision();
         }
         else
         {
-
+            action.onPatroll();
         }
     }
-
     void CheckPlayerInVision()
     {
         if (player == null) return;
@@ -47,7 +45,6 @@ public class EnemiesSee : MonoBehaviour
 
         if (distanceToPlayer <= visionRange && angleToPlayer <= visionAngle / 2)
         {
-            // Lanzamos un Raycast para verificar que no haya obstáculos entre el enemigo y el jugador
             if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstacleLayer))
             {
                 canSeePlayer = true;
@@ -59,7 +56,6 @@ public class EnemiesSee : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        // Dibujar el campo de visión en la escena
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, visionRange);
 
