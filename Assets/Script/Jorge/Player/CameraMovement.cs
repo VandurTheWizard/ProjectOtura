@@ -4,8 +4,12 @@ public class CameraMovement : MonoBehaviour
 {
     public int sensitivity = 200;
 
+    public Camera mainCamera;
+
     private float xRotation = 20f;
     private float yRotation = 0f;
+
+    
     
     void Start()
     {
@@ -23,7 +27,8 @@ public class CameraMovement : MonoBehaviour
         yRotation += mouseX;
         xRotation = Mathf.Clamp(xRotation, 0f, 30f);
 
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
+        mainCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
     }
 
