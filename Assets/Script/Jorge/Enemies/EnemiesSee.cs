@@ -27,7 +27,7 @@ public class EnemiesSee : MonoBehaviour
     void Update()
     {
         CheckPlayerInVision();
-        Debug.Log(canSeePlayer);
+
         if (canSeePlayer)
         {
             action.onVision();

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -9,6 +10,9 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
 
     private NavMeshAgent agent;
     private Vector3 destination;
+
+    private bool isStay = false;
+    private float stayTime = 2f;
 
     private bool isPlayerFound = true;
     private void Start()
@@ -47,8 +51,25 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
        
     }
 
+    public void onStay()
+    {
+        destination = transform.position;
+        agent.SetDestination(destination);
+        isStay = true;
+        StartCoroutine(StopStay());
+    }
+
+    private IEnumerator StopStay()
+    {
+        yield return new WaitForSeconds(stayTime);
+        isStay = false;
+
+    }
+
     public void onVision()
     {
+        if (isStay)
+            return;
         isPlayerFound= true;
         Vector3 destination = GameObject.FindGameObjectWithTag("Player").transform.position;
         agent.SetDestination(destination);
@@ -56,7 +77,8 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
 
     public void onPatroll()
     {
-       
+        if (isStay)
+            return;
         if (Vector3.Distance(transform.localPosition, destination) < distanceDiference || isPlayerFound)
         {
             

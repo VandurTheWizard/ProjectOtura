@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 10394562}
   m_Layer: 0
   m_Name: Enemie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -601,9 +601,10 @@ GameObject:
   - component: {fileID: 454366297}
   - component: {fileID: 454366296}
   - component: {fileID: 454366295}
+  - component: {fileID: 454366300}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -725,11 +726,23 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.2274, y: 3.2274, z: 3.2274}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &454366300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454366294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5323d7d13c782ad4599b7986eac6c00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &530117828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,15 +1599,15 @@ GameObject:
   - component: {fileID: 1577943511}
   - component: {fileID: 1577943510}
   - component: {fileID: 1577943509}
+  - component: {fileID: 1577943520}
   - component: {fileID: 1577943518}
   - component: {fileID: 1577943508}
-  - component: {fileID: 1577943515}
   - component: {fileID: 1577943513}
   - component: {fileID: 1577943517}
   - component: {fileID: 1577943516}
   - component: {fileID: 1577943519}
-  - component: {fileID: 1577943520}
   - component: {fileID: 1577943521}
+  - component: {fileID: 1577943522}
   m_Layer: 3
   m_Name: Capsule
   m_TagString: Player
@@ -1700,7 +1713,7 @@ Transform:
   m_GameObject: {fileID: 1577943507}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.67, y: 1.86, z: 3.31}
+  m_LocalPosition: {x: -12.82, y: 1.86, z: 3.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1721,20 +1734,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mana: 4
   maxMana: 5
---- !u!114 &1577943515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577943507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5669ee2653c150c49a3619772f0c0024, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manaValue: 4
-  spellValue: 5
 --- !u!114 &1577943516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1804,6 +1803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 400
+  mainCamera: {fileID: 963194227}
 --- !u!195 &1577943520
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1838,6 +1838,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93362c9a4dd1cc4d89c8f7ba60f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1577943522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577943507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e6b0a9b6afc364b9543a468e01eaf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trap: {fileID: 102052030380246347, guid: 220d0bc340a157a45a38a2e985c4f991, type: 3}
+  manaValue: 0
+  spellValue: 1
+  laserDistance: 10
+  isEnable: 1
 --- !u!1 &1613055005
 GameObject:
   m_ObjectHideFlags: 0
