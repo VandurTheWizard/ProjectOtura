@@ -6,6 +6,9 @@ public class CameraMovement : MonoBehaviour
 
     public Camera mainCamera;
 
+    public float minMovementX = 0;
+    public float maxMovementX = 30;
+
     private float xRotation = 20f;
     private float yRotation = 0f;
 
@@ -18,6 +21,8 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
+        if(!mainCamera.isActiveAndEnabled)
+            return;
 
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
@@ -25,7 +30,7 @@ public class CameraMovement : MonoBehaviour
 
         xRotation -= mouseY;
         yRotation += mouseX;
-        xRotation = Mathf.Clamp(xRotation, 0f, 30f);
+        xRotation = Mathf.Clamp(xRotation, minMovementX, maxMovementX);
 
         transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
         mainCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
