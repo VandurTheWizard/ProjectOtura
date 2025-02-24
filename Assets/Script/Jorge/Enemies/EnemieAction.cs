@@ -11,7 +11,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     private NavMeshAgent agent;
     private Vector3 destination;
 
-    private bool isStay = false;
+    private bool stay = false;
     private float stayTime = 2f;
 
     private bool isPlayerFound = true;
@@ -55,21 +55,24 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     {
         destination = transform.position;
         agent.SetDestination(destination);
-        isStay = true;
+        stay = true;
         StartCoroutine(StopStay());
+    }
+
+    public bool isStay()
+    {
+        return stay;
     }
 
     private IEnumerator StopStay()
     {
         yield return new WaitForSeconds(stayTime);
-        isStay = false;
+        stay = false;
 
     }
 
     public void onVision()
     {
-        if (isStay)
-            return;
         isPlayerFound= true;
         Vector3 destination = GameObject.FindGameObjectWithTag("Player").transform.position;
         agent.SetDestination(destination);
@@ -77,8 +80,6 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
 
     public void onPatroll()
     {
-        if (isStay)
-            return;
         if (Vector3.Distance(transform.localPosition, destination) < distanceDiference || isPlayerFound)
         {
             
