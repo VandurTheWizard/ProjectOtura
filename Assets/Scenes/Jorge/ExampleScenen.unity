@@ -1762,6 +1762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mana: 4
   maxMana: 5
+  isCasting: 0
 --- !u!114 &1577943516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1879,7 +1880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trap: {fileID: 102052030380246347, guid: 220d0bc340a157a45a38a2e985c4f991, type: 3}
-  manaValue: 0
+  manaValue: 1
   spellValue: 1
   laserDistance: 10
   isEnable: 1
@@ -2066,6 +2067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mana: 0
   maxMana: 0
+  isCasting: 0
 --- !u!4 &1739715823
 Transform:
   m_ObjectHideFlags: 0

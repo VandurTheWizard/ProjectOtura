@@ -26,6 +26,9 @@ public class EnemiesSee : MonoBehaviour
     }
     void Update()
     {
+        if (action.isStay())
+            return;
+
         CheckPlayerInVision();
 
         if (canSeePlayer)

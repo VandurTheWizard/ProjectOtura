@@ -10,6 +10,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
     public bool isEnable =true;
 
 
+    private ManaUsage mana;
     private GameObject trapInFloor;
     private Camera mainCamera;
     private float waitTime = 0.1f;
@@ -17,6 +18,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
     
     private void Start()
     {
+        mana = GetComponent<ManaUsage>();
         mainCamera = Camera.main;
     }
     public int getManaSpell()
@@ -57,13 +59,15 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
 
             }
 
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.Mouse0) && trapInFloor!=null)
             {
                 trapInFloor.GetComponent<TrapScript>().isEnable = true;
                 trapInFloor.transform.SetParent(FloorUsages.plane.transform, true);
                 FloorUsages.resetPlane();
                 trapInFloor = null;
                 isEnable = true;
+                mana.mana -= manaValue;
+                mana.isCasting = false;
                 yield break;
             }
 
@@ -72,6 +76,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
                 Destroy(trapInFloor);
                 trapInFloor = null;
                 isEnable = true;
+                mana.isCasting = false;
                 yield break;
             }
         }

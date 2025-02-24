@@ -7,4 +7,6 @@ public interface EnemiesStatus
     public void onAttack();
 
     public void onStay();
+
+    public bool isStay();
 }
