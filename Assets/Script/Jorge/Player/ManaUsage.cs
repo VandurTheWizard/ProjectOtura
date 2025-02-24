@@ -9,6 +9,9 @@ public class ManaUsage : MonoBehaviour
 
     public bool isCasting = false;
     private const int TRAPSPELL = 1;
+    private const int VISIONOFENEMIES = 2;
+    private const int MANIPULATION =3;
+    private const int TELETRANSPORT = 4;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,17 +25,32 @@ public class ManaUsage : MonoBehaviour
             return;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            getTrapSpell();
+            getSpell(TRAPSPELL);
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            getSpell(VISIONOFENEMIES);
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            getSpell(MANIPULATION);
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            getSpell(TELETRANSPORT);
             return;
         }
     }
 
 
-    public void getTrapSpell()
+    public void getSpell(int spell)
     {
         for (int i = 0; i < spells.Length; i++)
         {
-            if (spells[i].getSpellValue() == TRAPSPELL)
+            if (spells[i].getSpellValue() == spell)
             {
                 if (spells[i].getManaSpell() > mana)
                 {

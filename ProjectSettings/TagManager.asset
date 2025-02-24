@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - Enemy
+  - Pentagrama
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - Pentagrama
   - 
   - 
   - 
