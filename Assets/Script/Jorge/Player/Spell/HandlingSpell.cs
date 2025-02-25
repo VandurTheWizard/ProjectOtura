@@ -1,23 +1,24 @@
 using System.Collections;
 using UnityEngine;
 
-public class FireSpell : MonoBehaviour, ManaSpell
+public class HandlingSpell : MonoBehaviour, ManaSpell
 {
-    public GameObject fire;
     public int manaValue;
     public int spellValue;
-    public bool isEnable = true;
-    public int laserDistance = 10;
+    public bool enable = true;
+    public int laserDistance = 9999;
+    public LayerMask enemiesLayer;
 
+    public Camera mainCamera;
+
+    private GameObject enemies;
     private ManaUsage mana;
-    private Camera mainCamera;
     private float waitTime = 0.1f;
 
 
     private void Start()
     {
         mana = GetComponent<ManaUsage>();
-        mainCamera = Camera.main;
     }
     public int getManaSpell()
     {
@@ -31,9 +32,8 @@ public class FireSpell : MonoBehaviour, ManaSpell
 
     public void SpellAttack()
     {
-        if (!isEnable)
-            return;
-        isEnable = false;
+        enable = false;
+        StartCoroutine(CreateRayCast());
     }
 
     private IEnumerator CreateRayCast()
@@ -47,18 +47,19 @@ public class FireSpell : MonoBehaviour, ManaSpell
 
             Ray ray = mainCamera.ScreenPointToRay(mousePosition);
 
-
-           
-            if (Physics.Raycast(ray, out RaycastHit hit, laserDistance))
+            if (Physics.Raycast(ray, out RaycastHit hit, laserDistance, enemiesLayer))
             {
 
-                
+                enemies = hit.collider.gameObject;
 
             }
 
-            if (Input.GetKey(KeyCode.Mouse0))
+
+            if (Input.GetKey(KeyCode.Mouse0) && enemies != null)
             {
-                isEnable = true;
+                enemies.GetComponent<EnemiesStatus>().onHandling();
+                enemies = null;
+                enable = true;
                 mana.mana -= manaValue;
                 mana.isCasting = false;
                 yield break;
@@ -66,12 +67,18 @@ public class FireSpell : MonoBehaviour, ManaSpell
 
             if (Input.GetKey(KeyCode.Mouse1))
             {
-                isEnable = true;
+                enemies = null;
+                enable = true;
                 mana.isCasting = false;
                 yield break;
             }
         }
 
+
+    }
+
+    public bool isEnable()
+    {
+        return enable;
     }
 }
-

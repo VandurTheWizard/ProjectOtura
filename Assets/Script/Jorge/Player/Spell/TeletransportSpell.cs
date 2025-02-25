@@ -5,7 +5,7 @@ public class TeletransportSpell : MonoBehaviour, ManaSpell
 {
     public int manaValue;
     public int spellValue;
-    public bool isEnable = true;
+    public bool enable = true;
     public int laserDistance = 9999;
     public LayerMask pentagramaLayer;
 
@@ -35,9 +35,7 @@ public class TeletransportSpell : MonoBehaviour, ManaSpell
 
     public void SpellAttack()
     {
-        if (!isEnable)
-            return;
-        isEnable = false;
+        enable = false;
         StartCoroutine(CreateRayCast());
     }
 
@@ -65,7 +63,7 @@ public class TeletransportSpell : MonoBehaviour, ManaSpell
             {
                 player.transform.position = new Vector3(pentagrama.transform.position.x, player.position.y + pentagrama.transform.position.y, pentagrama.transform.position.z);
                 pentagrama = null;
-                isEnable = true;
+                enable = true;
                 mana.mana -= manaValue;
                 mana.isCasting = false;
                 changeCamera(true);
@@ -75,7 +73,7 @@ public class TeletransportSpell : MonoBehaviour, ManaSpell
             if (Input.GetKey(KeyCode.Mouse1))
             {
                 pentagrama = null;
-                isEnable = true;
+                enable = true;
                 mana.isCasting = false;
                 changeCamera(true);
                 yield break;
@@ -90,5 +88,10 @@ public class TeletransportSpell : MonoBehaviour, ManaSpell
     {
         mainCamera.gameObject.SetActive(isMainCamera);
         secondCamera.gameObject.SetActive(!isMainCamera);
+    }
+
+    public bool isEnable()
+    {
+        return enable;
     }
 }

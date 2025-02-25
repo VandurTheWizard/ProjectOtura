@@ -14,7 +14,10 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     private bool stay = false;
     private float stayTime = 2f;
 
+    private bool handling = false;
+    
     private bool isPlayerFound = true;
+    
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -90,6 +93,13 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
        
     }
 
+    public void onHandling()
+    {
+        Debug.Log("pipi");
+    }
 
-
+    public bool isHandling()
+    {
+        return handling;
+    }
 }

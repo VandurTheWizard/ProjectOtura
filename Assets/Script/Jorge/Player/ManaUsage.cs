@@ -1,3 +1,6 @@
+using System.Collections;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ManaUsage : MonoBehaviour
@@ -7,7 +10,11 @@ public class ManaUsage : MonoBehaviour
     public int mana = 0;
     public int maxMana = 5;
 
+    public TextMeshProUGUI information;
+
     public bool isCasting = false;
+
+    private float waitTime = 0.1f;
     private const int TRAPSPELL = 1;
     private const int VISIONOFENEMIES = 2;
     private const int MANIPULATION =3;
@@ -52,9 +59,17 @@ public class ManaUsage : MonoBehaviour
         {
             if (spells[i].getSpellValue() == spell)
             {
-                if (spells[i].getManaSpell() > mana)
+                if (spells[i].getManaSpell() > mana || !spells[i].isEnable())
                 {
-
+                    if(spells[i].getManaSpell() > mana)
+                    {
+                        viewText("You not have enough mana");
+                    }
+                    else
+                    {
+                        viewText("The spell not is enable");
+                    }
+                    
                 }
                 else
                 {
@@ -63,6 +78,32 @@ public class ManaUsage : MonoBehaviour
                 }
 
             }
+        }
+    }
+
+    private void viewText(string text)
+    {
+        TextMeshProUGUI informationText = Instantiate(information, information.transform);
+        informationText.text = text;
+        StartCoroutine(moveText(informationText));
+    }
+
+    private IEnumerator moveText(TextMeshProUGUI text)
+    {
+        float time = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(waitTime);
+            time += waitTime;
+
+
+            text.transform.position += new Vector3(0, 1, 0) * 100 * time;
+
+            if(time > 2){
+                Destroy(text.gameObject);
+                yield break;
+            }
+
         }
     }
 }
