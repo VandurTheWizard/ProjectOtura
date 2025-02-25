@@ -26,7 +26,7 @@ public class EnemiesSee : MonoBehaviour
     }
     void Update()
     {
-        if (action.isStay())
+        if (action.isStay() || action.isHandling())
             return;
 
         CheckPlayerInVision();

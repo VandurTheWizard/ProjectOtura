@@ -7,7 +7,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
     public int manaValue;
     public int spellValue;
     public int laserDistance;
-    public bool isEnable =true;
+    public bool enable =true;
 
 
     private ManaUsage mana;
@@ -33,9 +33,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
 
     public void SpellAttack()
     {
-        if (!isEnable)
-            return;
-        isEnable = false;
+        enable = false;
         StartCoroutine(CreateRayCast());
     }
 
@@ -65,7 +63,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
                 trapInFloor.transform.SetParent(FloorUsages.plane.transform, true);
                 FloorUsages.resetPlane();
                 trapInFloor = null;
-                isEnable = true;
+                enable = true;
                 mana.mana -= manaValue;
                 mana.isCasting = false;
                 yield break;
@@ -75,7 +73,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
             {
                 Destroy(trapInFloor);
                 trapInFloor = null;
-                isEnable = true;
+                enable = true;
                 mana.isCasting = false;
                 yield break;
             }
@@ -93,5 +91,10 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
             trapInFloor = Instantiate(trap, hit.point, Quaternion.identity);
         }
         
+    }
+
+    public bool isEnable()
+    {
+        return enable;
     }
 }
