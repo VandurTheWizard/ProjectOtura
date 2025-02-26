@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class HandlingSpell : MonoBehaviour, ManaSpell
 {
-    public int manaValue;
-    public int spellValue;
+    public int manaValue = 50;
+    public int spellValue = 3;
     public bool enable = true;
-    public int laserDistance = 9999;
+    public int laserDistance = 10;
     public LayerMask enemiesLayer;
 
     public Camera mainCamera;
 
     private GameObject enemies;
     private ManaUsage mana;
-    private float waitTime = 0.1f;
+    private float waitTime = 0.01f;
 
 
     private void Start()
@@ -47,9 +47,10 @@ public class HandlingSpell : MonoBehaviour, ManaSpell
 
             Ray ray = mainCamera.ScreenPointToRay(mousePosition);
 
+            Debug.DrawRay(ray.origin, ray.direction * laserDistance, Color.red, 0.5f);
+
             if (Physics.Raycast(ray, out RaycastHit hit, laserDistance, enemiesLayer))
             {
-
                 enemies = hit.collider.gameObject;
 
             }
