@@ -95,7 +95,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
 
     public void onHandling()
     {
-        Debug.Log("pipi");
+        Debug.Log("Me quiero matar");
     }
 
     public bool isHandling()

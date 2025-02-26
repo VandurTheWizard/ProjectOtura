@@ -48,8 +48,6 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
 
             Ray ray = mainCamera.ScreenPointToRay(mousePosition);
 
-
-            Debug.DrawLine(ray.origin, ray.direction, Color.red, 3f);
             if (Physics.Raycast(ray, out RaycastHit hit, laserDistance))
             {
 
