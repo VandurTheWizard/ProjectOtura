@@ -1,7 +1,7 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class EnemieAction : MonoBehaviour, EnemiesStatus
 {
@@ -13,8 +13,6 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
 
     private bool stay = false;
     private float stayTime = 2f;
-
-    private bool handling = false;
     
     private bool isPlayerFound = true;
     
@@ -91,15 +89,5 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
             agent.SetDestination(destination);
         }
        
-    }
-
-    public void onHandling()
-    {
-        Debug.Log("Me quiero matar");
-    }
-
-    public bool isHandling()
-    {
-        return handling;
     }
 }
