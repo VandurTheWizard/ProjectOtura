@@ -9,7 +9,4 @@ public interface EnemiesStatus
     public void onStay();
 
     public bool isStay();
-    public void onHandling();
-
-    public bool isHandling();
 }

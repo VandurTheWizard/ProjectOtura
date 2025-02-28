@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,10 +6,13 @@ public class EnemiesSee : MonoBehaviour
 {
     public float visionRange = 10f;
     public float visionAngle = 60f;
-    
+
+    public bool canSeeInvisibleItem = false;
+
     public LayerMask playerLayer;  
     public LayerMask obstacleLayer;
 
+    
     private Transform player;
 
     private EnemiesStatus action;
@@ -26,7 +27,7 @@ public class EnemiesSee : MonoBehaviour
     }
     void Update()
     {
-        if (action.isStay() || action.isHandling())
+        if (action.isStay())
             return;
 
         CheckPlayerInVision();
@@ -43,6 +44,7 @@ public class EnemiesSee : MonoBehaviour
     void CheckPlayerInVision()
     {
         if (player == null) return;
+        if (player.GetComponent<InvisibleSpell>().isVisible && !canSeeInvisibleItem) return;
 
         Vector3 directionToPlayer = (player.position - transform.position).normalized;
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);

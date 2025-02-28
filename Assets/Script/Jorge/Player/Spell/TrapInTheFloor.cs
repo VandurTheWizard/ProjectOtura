@@ -13,7 +13,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
     private ManaUsage mana;
     private GameObject trapInFloor;
     private Camera mainCamera;
-    private float waitTime = 0.1f;
+    private float waitTime = 0.001f;
 
     
     private void Start()
@@ -47,7 +47,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
             Vector3 mousePosition = Input.mousePosition;
 
             Ray ray = mainCamera.ScreenPointToRay(mousePosition);
-
+ 
             if (Physics.Raycast(ray, out RaycastHit hit, laserDistance))
             {
 
@@ -55,7 +55,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
 
             }
 
-            if (Input.GetKey(KeyCode.Mouse0) && trapInFloor!=null)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && trapInFloor!=null)
             {
                 trapInFloor.GetComponent<TrapScript>().isEnable = true;
                 trapInFloor.transform.SetParent(FloorUsages.plane.transform, true);
@@ -67,7 +67,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
                 yield break;
             }
 
-            if (Input.GetKey(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 Destroy(trapInFloor);
                 trapInFloor = null;

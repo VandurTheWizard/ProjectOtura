@@ -15,7 +15,7 @@ public class TeletransportSpell : MonoBehaviour, ManaSpell
     private Transform player;
     private GameObject pentagrama;
     private ManaUsage mana;
-    private float waitTime = 0.1f;
+    private float waitTime = 0.001f;
 
 
     private void Start()
@@ -59,7 +59,7 @@ public class TeletransportSpell : MonoBehaviour, ManaSpell
             }
 
             
-            if (Input.GetKey(KeyCode.Mouse0) && pentagrama != null)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && pentagrama != null)
             {
                 player.transform.position = new Vector3(pentagrama.transform.position.x, player.position.y + pentagrama.transform.position.y, pentagrama.transform.position.z);
                 pentagrama = null;
@@ -70,7 +70,7 @@ public class TeletransportSpell : MonoBehaviour, ManaSpell
                 yield break;
             }
 
-            if (Input.GetKey(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 pentagrama = null;
                 enable = true;

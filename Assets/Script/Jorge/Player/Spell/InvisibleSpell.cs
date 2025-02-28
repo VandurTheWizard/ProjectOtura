@@ -1,17 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemiesVisionSpell : MonoBehaviour, ManaSpell
+public class InvisibleSpell : MonoBehaviour, ManaSpell
 {
-    public int manaValue;
-    public int spellValue;
+    public int manaValue = 50;
+    public int spellValue = 3;
     public bool enable = true;
-    public float visibleEnemiesTime = 0.1f;
-
-    public Camera mainCamera;
-
-    public LayerMask everyThing;
-    public LayerMask enemies;
+    public bool isVisible = false;
+    public float invisibleTimePlayer = 5f;
 
     private ManaUsage mana;
 
@@ -33,31 +29,22 @@ public class EnemiesVisionSpell : MonoBehaviour, ManaSpell
 
     public void SpellAttack()
     {
-        enable = false;
         StartCoroutine(CreateRayCast());
     }
 
     private IEnumerator CreateRayCast()
     {
-  
+        enable = false;
         mana.mana -= manaValue;
-        ChangeLayerMask(enemies);
-        yield return new WaitForSeconds(visibleEnemiesTime);
-        ChangeLayerMask(everyThing);
+        isVisible = true;
+        yield return new WaitForSeconds(invisibleTimePlayer);
+        isVisible = false;
         mana.isCasting = false;
         enable = true;
         yield break;
-
-
     }
 
-
-    private void ChangeLayerMask(LayerMask layer)
-    {
-        mainCamera.cullingMask = layer;
-    }
-
-    bool ManaSpell.isEnable()
+    public bool isEnable()
     {
         return enable;
     }
