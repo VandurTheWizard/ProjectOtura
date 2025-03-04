@@ -4,73 +4,65 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemiesSee : MonoBehaviour
 {
-    public float visionRange = 10f;
-    public float visionAngle = 60f;
-
-    public bool canSeeInvisibleItem = false;
-
-    public LayerMask playerLayer;  
-    public LayerMask obstacleLayer;
-
-    
     private Transform player;
 
-    private EnemiesStatus action;
+    [Header("Rango de detección")]
+    public float detectionRange = 10f;
+    public float visionAngle = 60f;
+    public LayerMask obstacleLayer;
 
-    private bool canSeePlayer = false;
-
+    private EnemiesStatus status;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        action = GetComponent<EnemieAction>();
+        status = GetComponent<EnemiesStatus>();
     }
     void Update()
     {
-        if (action.isStay())
+        if (status.isStay())
             return;
 
-        CheckPlayerInVision();
-
-        if (canSeePlayer)
+        if (PlayerInSight())
         {
-            action.onVision();
+            status.onVision();
         }
         else
         {
-            action.onPatroll();
+            status.onPatroll();
         }
     }
-    void CheckPlayerInVision()
+
+    bool PlayerInSight()
     {
-        if (player == null) return;
-        if (player.GetComponent<InvisibleSpell>().isVisible && !canSeeInvisibleItem) return;
+        Vector3 directionToPlayer = player.position - transform.position;
+        float distanceToPlayer = directionToPlayer.magnitude;
 
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
+        if (distanceToPlayer > detectionRange)
+            return false;
 
-        if (distanceToPlayer <= visionRange && angleToPlayer <= visionAngle / 2)
+        float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer.normalized);
+
+        if (angleToPlayer > visionAngle / 2f)
         {
             if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstacleLayer))
             {
-                canSeePlayer = true;
-                return;
+                return false;
             }
         }
-        canSeePlayer = false;
+        return true;
     }
 
-    void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, visionRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
 
-        Vector3 leftBoundary = Quaternion.Euler(0, -visionAngle / 2, 0) * transform.forward * visionRange;
-        Vector3 rightBoundary = Quaternion.Euler(0, visionAngle / 2, 0) * transform.forward * visionRange;
+        Vector3 leftLimit = Quaternion.Euler(0, -visionAngle / 2, 0) * transform.forward * detectionRange;
+        Vector3 rightLimit = Quaternion.Euler(0, visionAngle / 2, 0) * transform.forward * detectionRange;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + leftBoundary);
-        Gizmos.DrawLine(transform.position, transform.position + rightBoundary);
+        Gizmos.DrawLine(transform.position, transform.position + leftLimit);
+        Gizmos.DrawLine(transform.position, transform.position + rightLimit);
     }
 }

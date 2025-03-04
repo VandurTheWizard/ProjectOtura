@@ -10,8 +10,16 @@ public class TrapScript : MonoBehaviour
 
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<EnemieAction>().onStay();
-            FloorUsages.resetPlaneWithDestroyGameObject(gameObject);
+            if (other.gameObject.GetComponent<EnemiesCircleAction>() != null)
+            {
+                FloorUsages.resetPlaneWithDestroyGameObject(gameObject);
+            }
+            else
+            {
+                other.gameObject.GetComponent<EnemieAction>().onStay();
+                FloorUsages.resetPlaneWithDestroyGameObject(gameObject);
+            }
+
         }
     }
 }

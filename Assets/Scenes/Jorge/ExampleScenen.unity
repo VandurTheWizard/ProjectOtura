@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 10394563}
   - component: {fileID: 10394561}
   - component: {fileID: 10394560}
-  - component: {fileID: 10394562}
+  - component: {fileID: 10394565}
   m_Layer: 6
   m_Name: Enemie
   m_TagString: Enemy
@@ -222,15 +222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22c7a39199f12b4fa76aaf920adc475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 9.48
-  visionAngle: 48.9
-  canSeeInvisibleItem: 0
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  detectionRange: 8.1
+  visionAngle: 35.2
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 62
+    m_Bits: 0
 --- !u!195 &10394561
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -244,7 +240,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 1
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 360
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -253,20 +249,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &10394562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10394555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7591a855f72fbb44fa770881fefadc47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  searchRadius: 10
-  distanceDiference: 2
 --- !u!54 &10394563
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -317,6 +299,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &10394565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10394555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e97bdd80488dc45bcbc6eed34d0107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  searchRadius: 8.86
+  distanceDiference: 2
 --- !u!1 &34889539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2240,7 +2236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lv: 0
   exp: 0
-  restExp: 1050
+  restExp: 0
 --- !u!54 &1577943518
 Rigidbody:
   m_ObjectHideFlags: 0
