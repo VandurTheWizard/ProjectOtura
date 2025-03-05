@@ -14,10 +14,10 @@ public class ManaUsage : MonoBehaviour
     public bool isCasting = false;
 
     private float waitTime = 0.1f;
-    private const int TRAPSPELL = 1;
-    private const int VISIONOFENEMIES = 2;
-    private const int MANIPULATION =3;
-    private const int TELETRANSPORT = 4;
+    public const int TRAPSPELL = 1;
+    public const int VISIONOFENEMIES = 2;
+    public const int MANIPULATION =3;
+    public const int TELETRANSPORT = 4;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
