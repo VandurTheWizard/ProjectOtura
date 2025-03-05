@@ -95,4 +95,9 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
     {
         return enable;
     }
+
+    public void setEnable(bool enable)
+    {
+        this.enable = enable;
+    }
 }

@@ -48,4 +48,9 @@ public class InvisibleSpell : MonoBehaviour, ManaSpell
     {
         return enable;
     }
+
+    public void setEnable(bool enable)
+    {
+        this.enable = enable;
+    }
 }

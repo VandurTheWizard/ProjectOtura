@@ -7,4 +7,6 @@ public interface ManaSpell
     public void SpellAttack();
     public bool isEnable();
 
+    public void setEnable(bool enable);
+
 }
