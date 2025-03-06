@@ -6,6 +6,7 @@ public class EfectoAlma : MonoBehaviour
     public float speed = 5.0f;
     public int experience = 40;
 
+    public AudioClip music;
     private GameObject player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,7 +28,9 @@ public class EfectoAlma : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<ExperienceUsage>().exp += experience;
+            player.GetComponent<AudioSource>().clip = music;
+            player.GetComponent<AudioSource>().Play();
+           other.gameObject.GetComponent<ExperienceUsage>().exp += experience;
             Destroy(gameObject);
         }
     }

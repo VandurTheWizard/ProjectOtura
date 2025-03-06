@@ -17,7 +17,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     private bool isPlayerFound = true;
 
 
-    private int status = 1;
+    private int status = 2;
     private const int ATTACK = 0;
     private const int VISION = 1;
     private const int PATROLL = 2;
@@ -112,9 +112,9 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
 
     private void movementOnPlayer()
     {
+        isPlayerFound = true;
         Vector3 destination = GameObject.FindGameObjectWithTag("Player").transform.position;
         Vector3 vision = GameObject.FindGameObjectWithTag("Player").transform.position;
-        vision.y = 0;
         transform.LookAt(vision);
         agent.SetDestination(destination);
     }
@@ -127,5 +127,10 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
             MoveToRandomPosition();
             agent.SetDestination(destination);
         }
+    }
+
+    public bool isPlayerVisible()
+    {
+        return isPlayerFound;
     }
 }

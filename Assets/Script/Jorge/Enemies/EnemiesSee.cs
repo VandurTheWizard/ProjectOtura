@@ -4,7 +4,6 @@ public class EnemiesSee : MonoBehaviour
 {
 
     public float detectionRange = 10f;
-    public bool isPlayerVisible = false;
 
     private BoxCollider boxCollider;
     private EnemiesStatus status;
@@ -26,7 +25,6 @@ public class EnemiesSee : MonoBehaviour
             Debug.DrawLine(transform.position, transform.forward * detectionRange, Color.red, 30f); 
             if (!Physics.Raycast(transform.position, transform.forward, out ray, detectionRange) || ray.collider.gameObject.CompareTag("Player"))
             {
-                Debug.Log("iS VISIBE");
                 status.onVision();
             }
            

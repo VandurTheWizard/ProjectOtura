@@ -99,4 +99,9 @@ public class EnemiesCircleAction : MonoBehaviour, EnemiesStatus
         }
 
     }
+
+    public bool isPlayerVisible()
+    {
+        throw new System.NotImplementedException();
+    }
 }

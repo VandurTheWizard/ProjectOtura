@@ -7,15 +7,14 @@ public class EnemiesDie : MonoBehaviour
 
     private float deathTime = 0;
 
-    private int DIETIMER = 2;
+    public int dieTime = 1;
 
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("DAS");
-            if (Input.GetKey(KeyCode.E) && !transform.parent.GetComponent<EnemiesSee>().isPlayerVisible)
+            if (Input.GetKey(KeyCode.E) && !transform.parent.GetComponent<EnemieAction>().isPlayerVisible())
             {
                 deathTime += Time.deltaTime;
             }
@@ -24,7 +23,7 @@ public class EnemiesDie : MonoBehaviour
                 deathTime = 0;
             }
 
-            if (deathTime >= DIETIMER)
+            if (deathTime >= dieTime)
             {
                 Instantiate(soul, transform.parent.position, Quaternion.identity);
                 Destroy(transform.parent.gameObject);
