@@ -1,68 +1,45 @@
 using UnityEngine;
-using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class EnemiesSee : MonoBehaviour
 {
-    private Transform player;
 
-    [Header("Rango de detección")]
     public float detectionRange = 10f;
-    public float visionAngle = 60f;
-    public LayerMask obstacleLayer;
+    public bool isPlayerVisible = false;
 
+    private BoxCollider boxCollider;
     private EnemiesStatus status;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        status = GetComponent<EnemiesStatus>();
-    }
-    void Update()
-    {
-        if (status.isStay())
-            return;
-
-        if (PlayerInSight())
-        {
-            status.onVision();
-        }
-        else
-        {
-            status.onPatroll();
-        }
+       status =  transform.parent.GetComponent<EnemiesStatus>();
+       boxCollider = GetComponent<BoxCollider>();
+       boxCollider.center = new Vector3 (0, 0, detectionRange/2);
+       boxCollider.size = new Vector3(5, 2, detectionRange);
     }
 
-    bool PlayerInSight()
+    private void OnTriggerStay(Collider other)
     {
-        Vector3 directionToPlayer = player.position - transform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
-
-        if (distanceToPlayer > detectionRange)
-            return false;
-
-        float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer.normalized);
-
-        if (angleToPlayer > visionAngle / 2f)
+        RaycastHit ray;
+       
+        if(other.gameObject.CompareTag("Player"))
         {
-            if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstacleLayer))
+            Debug.DrawLine(transform.position, transform.forward * detectionRange, Color.red, 30f); 
+            if (!Physics.Raycast(transform.position, transform.forward, out ray, detectionRange) || ray.collider.gameObject.CompareTag("Player"))
             {
-                return false;
+                Debug.Log("iS VISIBE");
+                status.onVision();
             }
+           
         }
-        return true;
+
+       
     }
 
-    private void OnDrawGizmos()
+    private void OnTriggerExit(Collider other)
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
-
-        Vector3 leftLimit = Quaternion.Euler(0, -visionAngle / 2, 0) * transform.forward * detectionRange;
-        Vector3 rightLimit = Quaternion.Euler(0, visionAngle / 2, 0) * transform.forward * detectionRange;
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + leftLimit);
-        Gizmos.DrawLine(transform.position, transform.position + rightLimit);
+        if (other.gameObject.CompareTag("Player"))
+        {
+           status.onPatroll();
+        }
     }
 }
