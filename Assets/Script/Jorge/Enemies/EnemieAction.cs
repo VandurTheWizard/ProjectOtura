@@ -15,12 +15,39 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     private float stayTime = 2f;
     
     private bool isPlayerFound = true;
-    
+
+
+    private int status = 1;
+    private const int ATTACK = 0;
+    private const int VISION = 1;
+    private const int PATROLL = 2;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         MoveToRandomPosition();
     }
+
+    private void Update()
+    {
+        if (isStay())
+            return;
+
+        switch (status)
+        {
+            case ATTACK:
+                
+                break;
+            case VISION:
+                movementOnPlayer();
+                break;
+            case PATROLL:
+                movementOnPatroll();
+                break;
+        }
+
+    }
+
     public void MoveToRandomPosition()
     {
         Vector3 randomPosition = GetRandomNavMeshPosition(transform.position, searchRadius);
@@ -49,7 +76,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
 
     public void onAttack()
     {
-       
+       status = ATTACK;
     }
 
     public void onStay()
@@ -74,20 +101,31 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
 
     public void onVision()
     {
-        isPlayerFound= true;
-        Vector3 destination = GameObject.FindGameObjectWithTag("Player").transform.position;
-        agent.SetDestination(destination);
+        status = VISION;
     }
 
     public void onPatroll()
     {
+        status = PATROLL;
+       
+    }
+
+    private void movementOnPlayer()
+    {
+        Vector3 destination = GameObject.FindGameObjectWithTag("Player").transform.position;
+        Vector3 vision = GameObject.FindGameObjectWithTag("Player").transform.position;
+        vision.y = 0;
+        transform.LookAt(vision);
+        agent.SetDestination(destination);
+    }
+
+    private void movementOnPatroll()
+    {
         if (Vector3.Distance(transform.localPosition, destination) < distanceDiference || isPlayerFound)
         {
-            
             isPlayerFound = false;
             MoveToRandomPosition();
             agent.SetDestination(destination);
         }
-       
     }
 }
