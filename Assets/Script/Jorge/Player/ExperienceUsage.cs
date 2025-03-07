@@ -8,15 +8,34 @@ public class ExperienceUsage : MonoBehaviour
 
     private ManaSpell[] manaSpell;
 
-    private const int expLevel1 = 1050;
-    private const int expLevel2 = 1650;
-    private const int expLevel3 = 2300;
-    private int[] expLevel = { expLevel1, expLevel2, expLevel3};
+    private const int EXPLEVEL1 = 1050;
+    private const int EXPLEVEL2 = 1650;
+    private const int EXPLEVEL3 = 2300;
+    private int[] expLevel = { EXPLEVEL1, EXPLEVEL2, EXPLEVEL3};
+
+    private const int LIFELEVEL1 = 100;
+    private const int LIFELEVEL2 = 130;
+    private const int LIFELEVEL3 = 70;
+    private const int LIFELEVEL4 = 50;
+
+    private int[] lifeLevel = { LIFELEVEL1 , LIFELEVEL2 , LIFELEVEL3 , LIFELEVEL4};
+
+    private const int MANALEVEL1 = 100;
+    private const int MANALEVEL2 = 50;
+    private const int MANALEVEL3 = 75;
+    private const int MANALEVEL4 = 75;
+
+    private int[] manaLevel = { MANALEVEL1, MANALEVEL2, MANALEVEL3, MANALEVEL4};
+
+    private LifeUsage life;
+    private ManaUsage mana;
 
     public const int MAXLEVEL = 4;
 
     private void Start()
     {
+        life = GetComponent<LifeUsage>();
+        mana = GetComponent<ManaUsage>();
         manaSpell = GetComponents<ManaSpell>();
     }
 
@@ -30,8 +49,12 @@ public class ExperienceUsage : MonoBehaviour
                 exp -= restExp;
                 restExp = expLevel[lv];
             }
-            lv++;
+            life.maxLife += lifeLevel[lv];
+            life.life += lifeLevel[lv];
+            mana.maxMana += manaLevel[lv];
+            mana.mana += manaLevel[lv];
 
+            lv++;
             for (int i = 0; i < manaSpell.Length; i++)
             {
                if(manaSpell[i].getSpellValue() == lv)
@@ -40,6 +63,7 @@ public class ExperienceUsage : MonoBehaviour
                     break;
                 }
             }
+
         }
 
     }
