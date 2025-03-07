@@ -10,7 +10,7 @@ public class TrapScript : MonoBehaviour
 
         if (other.gameObject.CompareTag("Enemy"))
         {
-            if (other.gameObject.GetComponent<EnemiesCircleAction>() != null)
+            if (other.gameObject.GetComponent<CirclePatrollMovement>() != null)
             {
                 FloorUsages.resetPlaneWithDestroyGameObject(gameObject);
             }
