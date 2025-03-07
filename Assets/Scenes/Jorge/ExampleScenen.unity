@@ -2539,8 +2539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d747532183c45ae48b4b8a2b28f5416a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mana: 1
-  maxMana: 200
+  mana: 0
+  maxMana: 0
   information: {fileID: 1166770527}
   isCasting: 0
 --- !u!114 &1577943516
@@ -2556,7 +2556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0
-  maxLife: 100
+  maxLife: 0
 --- !u!114 &1577943517
 MonoBehaviour:
   m_ObjectHideFlags: 0

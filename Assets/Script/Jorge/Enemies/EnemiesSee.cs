@@ -22,10 +22,16 @@ public class EnemiesSee : MonoBehaviour
        
         if(other.gameObject.CompareTag("Player"))
         {
-            Debug.DrawLine(transform.position, transform.forward * detectionRange, Color.red, 30f); 
             if (!Physics.Raycast(transform.position, transform.forward, out ray, detectionRange) || ray.collider.gameObject.CompareTag("Player"))
             {
-                status.onVision();
+                if (other.gameObject.GetComponent<InvisibleSpell>().isVisible)
+                {
+                    status.onVision();
+                }
+                else
+                {
+                    status.onPatroll();
+                }
             }
            
         }
