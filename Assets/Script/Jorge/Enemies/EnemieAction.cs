@@ -5,17 +5,17 @@ using UnityEngine.AI;
 
 public class EnemieAction : MonoBehaviour, EnemiesStatus
 {
-    public float searchRadius = 10f; 
-    public float distanceDiference = 2;
-
     private NavMeshAgent agent;
     private Vector3 destination;
 
     private bool stay = false;
     private float stayTime = 2f;
     
-    private bool isPlayerFound = true;
+    private bool isPlayerFound = false;
 
+    private Patroll patroll;
+    private Visible visible;
+    private Attack attack;
 
     private int status = 2;
     private const int ATTACK = 0;
@@ -25,7 +25,9 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        MoveToRandomPosition();
+        patroll = GetComponent<Patroll>();
+        visible = GetComponent<Visible>();
+        attack = GetComponent<Attack>();    
     }
 
     private void Update()
@@ -36,44 +38,17 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
         switch (status)
         {
             case ATTACK:
-                
+                attack.onAttack();
                 break;
             case VISION:
-                movementOnPlayer();
+                isPlayerFound = visible.onVisible();
                 break;
             case PATROLL:
-                movementOnPatroll();
+                isPlayerFound = patroll.onPatroll(isPlayerFound);
                 break;
         }
 
     }
-
-    public void MoveToRandomPosition()
-    {
-        Vector3 randomPosition = GetRandomNavMeshPosition(transform.position, searchRadius);
-        if (randomPosition != Vector3.zero)
-        {
-            destination = randomPosition;
-        }
-    }
-
-    Vector3 GetRandomNavMeshPosition(Vector3 origin, float radius)
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            Vector3 randomDirection = Random.insideUnitSphere * radius;
-            randomDirection += origin;
-            NavMeshHit hit;
-
-            if (NavMesh.SamplePosition(randomDirection, out hit, radius, NavMesh.AllAreas))
-            {
-                return hit.position;
-            }
-        }
-        return Vector3.zero;
-    }
-
-
     public void onAttack()
     {
        status = ATTACK;
@@ -110,24 +85,6 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
        
     }
 
-    private void movementOnPlayer()
-    {
-        isPlayerFound = true;
-        Vector3 destination = GameObject.FindGameObjectWithTag("Player").transform.position;
-        Vector3 vision = GameObject.FindGameObjectWithTag("Player").transform.position;
-        transform.LookAt(vision);
-        agent.SetDestination(destination);
-    }
-
-    private void movementOnPatroll()
-    {
-        if (Vector3.Distance(transform.localPosition, destination) < distanceDiference || isPlayerFound)
-        {
-            isPlayerFound = false;
-            MoveToRandomPosition();
-            agent.SetDestination(destination);
-        }
-    }
 
     public bool isPlayerVisible()
     {
