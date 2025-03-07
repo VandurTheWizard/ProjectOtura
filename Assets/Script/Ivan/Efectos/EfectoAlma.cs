@@ -30,7 +30,17 @@ public class EfectoAlma : MonoBehaviour
         {
             player.GetComponent<AudioSource>().clip = music;
             player.GetComponent<AudioSource>().Play();
-           other.gameObject.GetComponent<ExperienceUsage>().exp += experience;
+            player.GetComponent<ExperienceUsage>().exp += experience;
+            ManaUsage mana = player.GetComponent<ManaUsage>();
+            if(mana.mana + mana.maxMana/10 > mana.maxMana)
+            {
+                mana.mana = mana.maxMana;
+            }
+            else
+            {
+                mana.mana += mana.maxMana / 10;
+            }
+
             Destroy(gameObject);
         }
     }
