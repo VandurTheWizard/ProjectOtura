@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemiesDie : MonoBehaviour
 {
@@ -9,7 +10,21 @@ public class EnemiesDie : MonoBehaviour
 
     public int dieTime = 1;
 
+    public GameObject canvas;
+    public Image imagen;
 
+    private void Start()
+    {
+        canvas.gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            canvas.gameObject.SetActive(true);
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -28,7 +43,15 @@ public class EnemiesDie : MonoBehaviour
                 Instantiate(soul, transform.parent.position, Quaternion.identity);
                 Destroy(transform.parent.gameObject);
             }
+            imagen.fillAmount = deathTime / dieTime;
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            canvas.gameObject.SetActive(false);
+        }
+    }
 }

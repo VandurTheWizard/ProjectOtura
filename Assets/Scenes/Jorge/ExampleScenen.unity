@@ -2203,6 +2203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soul: {fileID: 1561509356510570476, guid: 45851ba87f1a4174d9f32d40960591c8, type: 3}
   dieTime: 1
+  canvas: {fileID: 548414444}
 --- !u!65 &1273227321
 BoxCollider:
   m_ObjectHideFlags: 0
