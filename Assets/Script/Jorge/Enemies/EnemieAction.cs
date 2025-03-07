@@ -9,7 +9,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     private Vector3 destination;
 
     private bool stay = false;
-    private float stayTime = 2f;
+    private float stayTime = 5f;
     
     private bool isPlayerFound = false;
 
