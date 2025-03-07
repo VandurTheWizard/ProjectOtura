@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemiesCircleAction : MonoBehaviour, EnemiesStatus
+public class EnemiesCircleAction : MonoBehaviour, Patroll
 {
     public float searchRadius = 10f;
     public float distanceDiference = 2;

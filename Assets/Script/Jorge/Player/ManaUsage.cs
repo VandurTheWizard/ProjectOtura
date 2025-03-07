@@ -13,11 +13,13 @@ public class ManaUsage : MonoBehaviour
 
     public bool isCasting = false;
 
-    private float waitTime = 0.1f;
+    private float waitTime = 2f;
     public const int TRAPSPELL = 1;
     public const int VISIONOFENEMIES = 2;
     public const int MANIPULATION =3;
     public const int TELETRANSPORT = 4;
+
+    private Coroutine coroutine;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,13 +62,14 @@ public class ManaUsage : MonoBehaviour
             {
                 if (spells[i].getManaSpell() > mana || !spells[i].isEnable())
                 {
-                    if(spells[i].getManaSpell() > mana)
+                    if(!spells[i].isEnable())
                     {
-                        viewText("You not have enough mana");
+                        viewText("The spell not is enable");
+                        
                     }
                     else
                     {
-                        viewText("The spell not is enable");
+                        viewText("You not have enough mana");
                     }
                     
                 }
@@ -82,27 +85,16 @@ public class ManaUsage : MonoBehaviour
 
     private void viewText(string text)
     {
-        TextMeshProUGUI informationText = Instantiate(information, information.transform);
-        informationText.text = text;
-        StartCoroutine(moveText(informationText));
+        if(coroutine != null)
+            StopCoroutine(coroutine);
+        information.text = text;
+        coroutine = StartCoroutine(moveText(information));
     }
 
     private IEnumerator moveText(TextMeshProUGUI text)
     {
-        float time = 0;
-        while (true)
-        {
-            yield return new WaitForSeconds(waitTime);
-            time += waitTime;
+        yield return new WaitForSeconds(waitTime);
 
-
-            text.transform.position += new Vector3(0, 1, 0) * 100 * time;
-
-            if(time > 2){
-                Destroy(text.gameObject);
-                yield break;
-            }
-
-        }
+        information.text = "";
     }
 }
