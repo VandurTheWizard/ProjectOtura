@@ -8,7 +8,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
     public int spellValue;
     public int laserDistance;
     public bool enable =true;
-
+    public LayerMask floor;
 
     private ManaUsage mana;
     private GameObject trapInFloor;
@@ -48,7 +48,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
 
             Ray ray = mainCamera.ScreenPointToRay(mousePosition);
  
-            if (Physics.Raycast(ray, out RaycastHit hit, laserDistance))
+            if (Physics.Raycast(ray, out RaycastHit hit, laserDistance, floor))
             {
 
                 CreateObject(hit);

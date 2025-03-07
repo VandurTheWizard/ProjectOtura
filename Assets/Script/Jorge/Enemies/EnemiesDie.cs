@@ -29,7 +29,7 @@ public class EnemiesDie : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (Input.GetKey(KeyCode.E) && !transform.parent.GetComponent<EnemieAction>().isPlayerVisible())
+            if (Input.GetKey(KeyCode.E))
             {
                 deathTime += Time.deltaTime;
             }
