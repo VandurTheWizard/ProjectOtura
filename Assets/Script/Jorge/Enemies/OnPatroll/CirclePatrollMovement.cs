@@ -10,7 +10,7 @@ public class CirclePatrollMovement : MonoBehaviour, Patroll
     private Vector3 destination;
 
     private bool isFoundPentagrama = true;
-    private int TimePentagrama = 10;
+    //private int TimePentagrama = 10;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
