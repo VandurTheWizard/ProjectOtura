@@ -2741,7 +2741,7 @@ MonoBehaviour:
   manaValue: 50
   spellValue: 3
   enable: 0
-  isVisible: 0
+  isVisible: 1
   invisibleTimePlayer: 5
 --- !u!82 &1577943528
 AudioSource:
