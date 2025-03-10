@@ -22,9 +22,12 @@ public class ManaUsage : MonoBehaviour
     public const int TELETRANSPORT = 4;
 
     private Coroutine coroutine;
+
+    private AudioGestions gestions;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gestions = GetComponentInChildren<AudioGestions>();
         spells = GetComponents<ManaSpell>();
     }
 
@@ -95,7 +98,7 @@ public class ManaUsage : MonoBehaviour
 
     private IEnumerator moveText(TextMeshProUGUI text)
     {
-        GetComponent<AudioGestions>().playAudio(music);
+        gestions.playAudio(music);
         yield return new WaitForSeconds(waitTime);
 
         information.text = "";

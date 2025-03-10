@@ -13,12 +13,18 @@ public class EnemiesVisionSpell : MonoBehaviour, ManaSpell
     public LayerMask everyThing;
     public LayerMask enemies;
 
+
+    public AudioClip music;
+    private AudioGestions gestions;
+   
+
     private ManaUsage mana;
 
 
 
     private void Start()
     {
+        gestions = GetComponentInChildren<AudioGestions>();
         mana = GetComponent<ManaUsage>();
     }
     public int getManaSpell()
@@ -42,6 +48,7 @@ public class EnemiesVisionSpell : MonoBehaviour, ManaSpell
 
         mana.loseMana(manaValue);
         ChangeLayerMask(enemies);
+        gestions.playAudio(music);
         yield return new WaitForSeconds(visibleEnemiesTime);
         ChangeLayerMask(everyThing);
         mana.isCasting = false;
