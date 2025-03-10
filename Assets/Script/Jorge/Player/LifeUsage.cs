@@ -21,12 +21,12 @@ public class LifeUsage : MonoBehaviour
         }
     }
 
-    public void loseLife(int life)
+    public void loseLife(float life)
     {
         this.life  -= life;
     }
 
-    public void recieveLife(int life)
+    public void recieveLife(float life)
     {
         if (this.life + life >= maxLife)
         {

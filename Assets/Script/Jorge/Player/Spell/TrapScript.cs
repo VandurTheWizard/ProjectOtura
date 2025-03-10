@@ -18,6 +18,7 @@ public class TrapScript : MonoBehaviour
             else
             {
                 other.gameObject.GetComponent<Attack>().resetAttack();
+                other.gameObject.GetComponent<Attack>().stopAttackFor(stayTime);
                 other.gameObject.GetComponent<EnemieAction>().onStay(stayTime);
                 FloorUsages.resetPlaneWithDestroyGameObject(gameObject);
             }

@@ -54,4 +54,9 @@ public class AttackWithPray : MonoBehaviour, Attack
         audioResp = null;
         attack = false;
     }
+
+    public void stopAttackFor(float seconds)
+    {
+      
+    }
 }
