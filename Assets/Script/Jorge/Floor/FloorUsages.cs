@@ -10,13 +10,6 @@ public class FloorUsages : MonoBehaviour
     {
         plane = gameObject;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public static void resetPlane()
     {
         NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();

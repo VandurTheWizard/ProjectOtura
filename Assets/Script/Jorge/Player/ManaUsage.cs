@@ -13,6 +13,8 @@ public class ManaUsage : MonoBehaviour
 
     public bool isCasting = false;
 
+    public AudioClip music;
+
     private float waitTime = 2f;
     public const int TRAPSPELL = 1;
     public const int VISIONOFENEMIES = 2;
@@ -60,7 +62,7 @@ public class ManaUsage : MonoBehaviour
         {
             if (spells[i].getSpellValue() == spell)
             {
-                if (spells[i].getManaSpell() > mana || !spells[i].isEnable())
+                if ( isLoseMana(spells[i].getManaSpell()) || !spells[i].isEnable())
                 {
                     if(!spells[i].isEnable())
                     {
@@ -93,8 +95,39 @@ public class ManaUsage : MonoBehaviour
 
     private IEnumerator moveText(TextMeshProUGUI text)
     {
+        GetComponent<AudioGestions>().playAudio(music);
         yield return new WaitForSeconds(waitTime);
 
         information.text = "";
+    }
+
+    public void loseMana(int mana)
+    {
+        if(this.mana - mana < 0)
+        {
+            this.mana = 0;
+        }
+        else
+        {
+            this.mana -= mana;
+        }
+       
+    }
+
+    public bool isLoseMana(int mana)
+    {
+        return this.mana - mana < 0;
+    }
+
+    public void recieveMana(int mana)
+    {
+        if(this.mana + mana >= maxMana)
+        {
+            this.mana = maxMana;
+        }
+        else
+        {
+            this.mana += mana;
+        }
     }
 }

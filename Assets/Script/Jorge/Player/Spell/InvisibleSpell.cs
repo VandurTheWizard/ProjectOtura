@@ -35,7 +35,7 @@ public class InvisibleSpell : MonoBehaviour, ManaSpell
     private IEnumerator CreateRayCast()
     {
         enable = false;
-        mana.mana -= manaValue;
+        mana.loseMana(manaValue);
         isVisible = false;
         yield return new WaitForSeconds(invisibleTimePlayer);
         isVisible = true;

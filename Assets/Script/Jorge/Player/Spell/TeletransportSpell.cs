@@ -64,7 +64,7 @@ public class TeletransportSpell : MonoBehaviour, ManaSpell
                 player.transform.position = new Vector3(pentagrama.transform.position.x, player.position.y + pentagrama.transform.position.y, pentagrama.transform.position.z);
                 pentagrama = null;
                 enable = true;
-                mana.mana -= manaValue;
+                mana.loseMana(manaValue);
                 mana.isCasting = false;
                 changeCamera(true);
                 yield break;

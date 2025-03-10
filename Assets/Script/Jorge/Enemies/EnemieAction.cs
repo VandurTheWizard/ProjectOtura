@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,14 +9,14 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     private NavMeshAgent agent;
     private Vector3 destination;
 
-    private bool stay = false;
-    private float stayTime = 5f;
-    
+    private bool stay = false;    
     private bool isPlayerFound = false;
 
     private Patroll patroll;
     private Visible visible;
     private Attack attack;
+
+    private Coroutine coroutine;
 
     private int status = 2;
     private const int ATTACK = 0;
@@ -25,9 +26,9 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        attack = GetComponent<Attack>();
         patroll = GetComponent<Patroll>();
         visible = GetComponent<Visible>();
-        attack = GetComponent<Attack>();    
     }
 
     private void Update()
@@ -49,17 +50,17 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
         }
 
     }
-    public void onAttack()
+    public void onStay(int time)
     {
-       status = ATTACK;
-    }
-
-    public void onStay()
-    {
+        if(coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
         destination = transform.position;
         agent.SetDestination(destination);
         stay = true;
-        StartCoroutine(StopStay());
+        coroutine = StartCoroutine(StopStay(time));
     }
 
     public bool isStay()
@@ -67,9 +68,9 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
         return stay;
     }
 
-    private IEnumerator StopStay()
+    private IEnumerator StopStay(int time)
     {
-        yield return new WaitForSeconds(stayTime);
+        yield return new WaitForSeconds(time);
         stay = false;
 
     }
@@ -89,5 +90,10 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     public bool isPlayerVisible()
     {
         return isPlayerFound;
+    }
+
+    public void onAttack()
+    {
+        status = ATTACK;
     }
 }

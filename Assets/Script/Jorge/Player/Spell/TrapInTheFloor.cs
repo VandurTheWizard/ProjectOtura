@@ -62,7 +62,7 @@ public class TrapInTheFloor : MonoBehaviour, ManaSpell
                 FloorUsages.resetPlane();
                 trapInFloor = null;
                 enable = true;
-                mana.mana -= manaValue;
+                mana.loseMana(manaValue);
                 mana.isCasting = false;
                 yield break;
             }

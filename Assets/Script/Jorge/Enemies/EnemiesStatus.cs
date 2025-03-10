@@ -4,11 +4,12 @@ public interface EnemiesStatus
 {
     public void onPatroll();
     public void onVision();
-    public void onAttack();
 
-    public void onStay();
+    public void onStay(int time);
 
     public bool isStay();
+
+    public void onAttack();
 
     public bool isPlayerVisible();
 }

@@ -2,17 +2,42 @@ using UnityEngine;
 
 public class LifeUsage : MonoBehaviour
 {
-    public int life = 50;
-    public int maxLife = 100;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float life = 50;
+    public float maxLife = 100;
+    public const int  MINLIFE = 1;
+
+    private DyingScript dying;
+
+    private void Start()
     {
+        dying = GetComponent<DyingScript>();
+    }
+
+    public void Update()
+    {
+        if(life < MINLIFE)
+        {
+            dying.onDying();
+        }
+    }
+
+    public void loseLife(int life)
+    {
+        this.life  -= life;
+    }
+
+    public void recieveLife(int life)
+    {
+        if (this.life + life >= maxLife)
+        {
+            this.life = maxLife;
+
+        }
+        else
+        {
+            this.life += life;
+        }
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
