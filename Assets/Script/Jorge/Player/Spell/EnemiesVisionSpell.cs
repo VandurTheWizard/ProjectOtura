@@ -39,8 +39,8 @@ public class EnemiesVisionSpell : MonoBehaviour, ManaSpell
 
     private IEnumerator CreateRayCast()
     {
-  
-        mana.mana -= manaValue;
+
+        mana.loseMana(manaValue);
         ChangeLayerMask(enemies);
         yield return new WaitForSeconds(visibleEnemiesTime);
         ChangeLayerMask(everyThing);

@@ -4,6 +4,7 @@ public class EnemiesSee : MonoBehaviour
 {
 
     public float detectionRange = 10f;
+    public float attackRange = 3;
 
     private BoxCollider boxCollider;
     private EnemiesStatus status;
@@ -26,7 +27,16 @@ public class EnemiesSee : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<InvisibleSpell>().isVisible)
                 {
-                    status.onVision();
+                    if(Vector3.Distance(transform.position, other.gameObject.transform.position) < attackRange)
+                    {
+                        status.onAttack();
+                       
+                    }
+                    else
+                    {
+                        status.onVision();
+                    }
+                  
                 }
                 else
                 {

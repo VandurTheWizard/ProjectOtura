@@ -3,6 +3,7 @@ using UnityEngine;
 public class TrapScript : MonoBehaviour
 {
     public bool isEnable = false;
+    public int stayTime = 5;
     private void OnTriggerEnter(Collider other)
     {
         if (!isEnable)
@@ -16,7 +17,8 @@ public class TrapScript : MonoBehaviour
             }
             else
             {
-                other.gameObject.GetComponent<EnemieAction>().onStay();
+                other.gameObject.GetComponent<Attack>().resetAttack();
+                other.gameObject.GetComponent<EnemieAction>().onStay(stayTime);
                 FloorUsages.resetPlaneWithDestroyGameObject(gameObject);
             }
 
