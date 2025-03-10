@@ -13,6 +13,7 @@ public class EnemiesDie : MonoBehaviour
     public GameObject canvas;
     public Image imagen;
 
+    public AudioClip music;
     private void Start()
     {
         canvas.gameObject.SetActive(false);
@@ -40,6 +41,7 @@ public class EnemiesDie : MonoBehaviour
 
             if (deathTime >= dieTime)
             {
+                GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<AudioGestions>().playAudio(music);
                 Instantiate(soul, transform.parent.position, Quaternion.identity);
                 Destroy(transform.parent.gameObject);
             }

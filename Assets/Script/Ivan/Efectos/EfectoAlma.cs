@@ -28,7 +28,7 @@ public class EfectoAlma : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player.GetComponent<AudioGestions>().playAudio(music);
+            player.GetComponentInChildren<AudioGestions>().playAudio(music);
             player.GetComponent<ExperienceUsage>().exp += experience;
             ManaUsage mana = player.GetComponent<ManaUsage>();
             mana.recieveMana(mana.maxMana / 10);
