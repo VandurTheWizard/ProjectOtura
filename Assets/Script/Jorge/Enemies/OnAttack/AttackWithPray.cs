@@ -1,13 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-public class AttackWithPray : MonoBehaviour, Attack
+public class AttackWithPray : MonoBehaviour, Attack, CompatibleSeeBack
 {
     public int[] prayTime = {5, 10};
     public int damage = 5;
 
     private bool attack = false;
     private EnemiesStatus enemiesStatus;
+
+    private Coroutine coroutine;
     
     private AudioGestions gestions;
     public AudioClip music;
@@ -15,6 +17,8 @@ public class AttackWithPray : MonoBehaviour, Attack
     private AudioSource audioResp;
 
     private GameObject player;
+
+    private bool ended;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,7 +38,7 @@ public class AttackWithPray : MonoBehaviour, Attack
         int waitTime = Random.Range(prayTime[0], prayTime[1]);
         enemiesStatus.onStay(waitTime);
         audioResp = gestions.deleteMyself(music);
-        StartCoroutine(pray(waitTime));
+        coroutine = StartCoroutine(pray(waitTime));
     }
 
     private IEnumerator pray(int waitTime)
@@ -45,13 +49,38 @@ public class AttackWithPray : MonoBehaviour, Attack
         Destroy(audioResp);
         audioResp = null;
         attack = false;
-
+        ended = true;
     }
 
     public void resetAttack()
     {
+        
         Destroy(audioResp);
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+        
         audioResp = null;
         attack = false;
     }
+<<<<<<< Updated upstream
+=======
+
+    public void stopAttackFor(float seconds)
+    {
+      
+    }
+
+    public bool isEnded()
+    {
+        return ended;
+    }
+
+    public void resetEnded()
+    {
+        ended = false;
+    }
+>>>>>>> Stashed changes
 }

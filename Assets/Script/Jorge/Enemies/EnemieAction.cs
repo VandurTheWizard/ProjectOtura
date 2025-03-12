@@ -15,6 +15,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     private Patroll patroll;
     private Visible visible;
     private Attack attack;
+    private CompatibleSeeBack attackImplementable;
 
     private Coroutine coroutine;
 
@@ -25,6 +26,11 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
 
     private void Start()
     {
+        CompatibleSeeBack buffer;
+        if (TryGetComponent<CompatibleSeeBack>(out buffer))
+        {
+            attackImplementable = buffer;
+        }
         agent = GetComponent<NavMeshAgent>();
         attack = GetComponent<Attack>();
         patroll = GetComponent<Patroll>();
@@ -39,6 +45,10 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
         switch (status)
         {
             case ATTACK:
+                if(attackImplementable !=null && attackImplementable.isEnded())
+                {
+                    goto case PATROLL;
+                }
                 attack.onAttack();
                 break;
             case VISION:
