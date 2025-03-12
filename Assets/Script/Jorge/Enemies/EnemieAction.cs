@@ -17,7 +17,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     private Attack attack;
     private Coroutine coroutine;
 
-    private int status = 2;
+  [SerializeField]  private int status = 2;
     private const int ATTACK = 0;
     private const int VISION = 1;
     private const int PATROLL = 2;

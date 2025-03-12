@@ -4,7 +4,7 @@ public class TrapScript : MonoBehaviour
 {
     public bool isEnable = false;
     public int stayTime = 5;
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (!isEnable)
             return;

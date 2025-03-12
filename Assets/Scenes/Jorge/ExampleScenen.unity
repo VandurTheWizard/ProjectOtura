@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7591a855f72fbb44fa770881fefadc47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status: 2
 --- !u!195 &10394568
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -348,12 +349,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 10394555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cebb375a657df3e4e8518191bb6bd90c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1df71b751b842a74fb8ebc23cec58471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prayTime: 050000000a000000
-  damage: 20
-  music: {fileID: 8300000, guid: a88ab1b4b42bcf147965b2318bb4d490, type: 3}
+  Water: {fileID: 6306277940005534847, guid: fb21357e5c81a3440b087605662e148d, type: 3}
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &34889539
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,7 +888,7 @@ GameObject:
   - component: {fileID: 454366296}
   - component: {fileID: 454366295}
   - component: {fileID: 454366300}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -2812,7 +2814,7 @@ MonoBehaviour:
   enable: 0
   floor:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
 --- !u!114 &1577943523
 MonoBehaviour:
   m_ObjectHideFlags: 0

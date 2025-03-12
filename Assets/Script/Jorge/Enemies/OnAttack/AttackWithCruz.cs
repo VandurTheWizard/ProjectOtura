@@ -28,19 +28,6 @@ public class AttackWithCruz : MonoBehaviour, Attack
       
     }
 
-    public void stopAttackFor(float seconds)
-    {
-        isAttack = false;
-        StartCoroutine(stopAttack(seconds));
-    }
-
-    private IEnumerator stopAttack(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        isAttack = true;
-
-    }
-
     public bool going()
     {
         Vector3 destination = GameObject.FindGameObjectWithTag("Player").transform.position;
