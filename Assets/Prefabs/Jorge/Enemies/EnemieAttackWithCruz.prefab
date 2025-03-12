@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6149787590194774986}
   - component: {fileID: 6432428109833451510}
   - component: {fileID: 534709307044273276}
-  - component: {fileID: 6763032120539017771}
+  - component: {fileID: 191996627414324698}
   m_Layer: 6
   m_Name: EnemieAttackWithCruz
   m_TagString: Enemy
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4890cbe6613d3448a590c5474282cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6763032120539017771
+--- !u!114 &191996627414324698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,10 +229,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1649465605665137157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5bd220972524c64a93d0f787e1fc6f8, type: 3}
+  m_Script: {fileID: 11500000, guid: f977c6c7d3abf9045a10e584349b8bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerSecond: 7
+  damagePerSecond: 5
 --- !u!1 &4542810783817718669
 GameObject:
   m_ObjectHideFlags: 0
