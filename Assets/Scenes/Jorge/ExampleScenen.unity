@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prayTime: 050000000a000000
-  damage: 5
+  damage: 20
   music: {fileID: 8300000, guid: a88ab1b4b42bcf147965b2318bb4d490, type: 3}
 --- !u!1 &34889539
 GameObject:
@@ -570,8 +570,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22c7a39199f12b4fa76aaf920adc475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 20
-  attackRange: 2
+  detectionRange: 10
+  attackRange: 3
 --- !u!1 &234717903
 GameObject:
   m_ObjectHideFlags: 0

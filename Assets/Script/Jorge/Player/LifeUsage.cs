@@ -21,7 +21,7 @@ public class LifeUsage : MonoBehaviour
         }
     }
 
-    public void loseLife(int life)
+    public void loseLife(float life)
     {
         this.life  -= life;
     }

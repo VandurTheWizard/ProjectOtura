@@ -1,20 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemieAction : MonoBehaviour, EnemiesStatus
+public class EnemieActionsBack : MonoBehaviour, EnemiesStatus
 {
     private NavMeshAgent agent;
     private Vector3 destination;
 
-    private bool stay = false;    
+    private bool stay = false;
     private bool isPlayerFound = false;
 
     private Patroll patroll;
     private Visible visible;
     private Attack attack;
+    private CompatibleSeeBack attackImplementable;
+
     private Coroutine coroutine;
 
     private int status = 2;
@@ -24,6 +24,11 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
 
     private void Start()
     {
+        CompatibleSeeBack buffer;
+        if (TryGetComponent<CompatibleSeeBack>(out buffer))
+        {
+            attackImplementable = buffer;
+        }
         agent = GetComponent<NavMeshAgent>();
         attack = GetComponent<Attack>();
         patroll = GetComponent<Patroll>();
@@ -38,6 +43,10 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
         switch (status)
         {
             case ATTACK:
+                if (attackImplementable != null && attackImplementable.isEnded())
+                {
+                    goto case PATROLL;
+                }
                 attack.onAttack();
                 break;
             case VISION:
@@ -51,7 +60,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     }
     public void onStay(int time)
     {
-        if(coroutine != null)
+        if (coroutine != null)
         {
             StopCoroutine(coroutine);
             coroutine = null;
@@ -82,7 +91,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     public void onPatroll()
     {
         status = PATROLL;
-       
+
     }
 
 
