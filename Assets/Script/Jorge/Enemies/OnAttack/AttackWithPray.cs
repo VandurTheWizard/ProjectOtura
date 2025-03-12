@@ -65,8 +65,7 @@ public class AttackWithPray : MonoBehaviour, Attack, CompatibleSeeBack
         audioResp = null;
         attack = false;
     }
-<<<<<<< Updated upstream
-=======
+
 
     public void stopAttackFor(float seconds)
     {
@@ -82,5 +81,4 @@ public class AttackWithPray : MonoBehaviour, Attack, CompatibleSeeBack
     {
         ended = false;
     }
->>>>>>> Stashed changes
 }
