@@ -38,6 +38,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
         switch (status)
         {
             case ATTACK:
+                isPlayerFound = true;
                 attack.onAttack();
                 break;
             case VISION:
