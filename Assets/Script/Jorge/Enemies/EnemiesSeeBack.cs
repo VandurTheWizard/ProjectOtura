@@ -33,6 +33,11 @@ public class EnemiesSeeBack : MonoBehaviour
                 {
                     isPlayerVisible = true;
                     status.onVision();
+                }
+                else
+                {
+                    isPlayerVisible = false;
+                    status.onPatroll();
                 }  
             }
 
