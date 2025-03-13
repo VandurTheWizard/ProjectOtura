@@ -6,6 +6,7 @@ public class EnemiesSeeBack : MonoBehaviour
 
     public float detectionRange = 10f;
 
+    private Coroutine coroutine;
     private bool isPlayerVisible  = false;
 
     private BoxCollider boxCollider;
@@ -23,14 +24,36 @@ public class EnemiesSeeBack : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        RaycastHit ray;
 
         if (other.gameObject.CompareTag("Player"))
         {
-            if (!Physics.Raycast(transform.position, transform.forward, out ray, detectionRange) || ray.collider.gameObject.CompareTag("Player"))
+            if (Physics.Raycast(transform.position, transform.forward , detectionRange))
+            {
+                RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, detectionRange);
+                if (CheckIfPlayerFirst(hits))
+                {
+
+                    if (other.gameObject.GetComponent<InvisibleSpell>().isVisible)
+                    {
+                        isPlayerVisible = true;
+                        status.onVision();
+                    }
+                    else
+                    {
+                        isPlayerVisible = false;
+                        status.onPatroll();
+                    }
+                }
+                else
+                {
+                    comprobeIfIsAttack();
+                }
+
+            }
+            else
             {
                 if (other.gameObject.GetComponent<InvisibleSpell>().isVisible)
-                {
+                { 
                     isPlayerVisible = true;
                     status.onVision();
                 }
@@ -38,7 +61,7 @@ public class EnemiesSeeBack : MonoBehaviour
                 {
                     isPlayerVisible = false;
                     status.onPatroll();
-                }  
+                }
             }
 
         }
@@ -50,25 +73,7 @@ public class EnemiesSeeBack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (isPlayerVisible)
-            {
-                if (seeBack.isEnded())
-                {
-                    seeBack.resetEnded();
-                    isPlayerVisible = false;
-                    status.onPatroll();
-                }
-                else
-                {
-                    status.onAttack();
-                    StartCoroutine(isEndedAttack());
-                }
-
-            }
-            else
-            {
-                status.onPatroll();
-            }
+            comprobeIfIsAttack();
         }
     }
 
@@ -81,6 +86,50 @@ public class EnemiesSeeBack : MonoBehaviour
         seeBack.resetEnded();
         isPlayerVisible = false;
         status.onPatroll();
+        coroutine = null;
+    }
+
+    private void comprobeIfIsAttack()
+    {
+        if (isPlayerVisible)
+        {
+            if (seeBack.isEnded())
+            {
+                seeBack.resetEnded();
+                isPlayerVisible = false;
+                status.onPatroll();
+            }
+            else
+            {
+                status.onAttack();
+                if (coroutine == null)
+                    coroutine = StartCoroutine(isEndedAttack());
+            }
+
+        }
+        else
+        {
+            status.onPatroll();
+        }
+    }
+
+     private bool CheckIfPlayerFirst(RaycastHit[] hits)
+    {
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                return true;
+            }
+            else if (hit.collider.CompareTag("Wall"))
+            {
+                return false;
+            }
+        }
+
+        return false;
     }
 }
+
+
 
