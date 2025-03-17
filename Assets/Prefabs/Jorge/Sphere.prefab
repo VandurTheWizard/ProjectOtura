@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 8402484673809124537}
   - component: {fileID: 4413255854561991430}
   - component: {fileID: 1323269672235638647}
+  - component: {fileID: 7773747182243516409}
   m_Layer: 7
   m_Name: Sphere
   m_TagString: Pentagrama
@@ -234,3 +235,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnable: 0
+  stayTime: 5
+--- !u!95 &7773747182243516409
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8825089913495895465}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e358105a4c1080408acad73054270de, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
