@@ -9,6 +9,8 @@ public class RandomPatrollMovement : MonoBehaviour, Patroll
     private NavMeshAgent agent;
     private Vector3 destination;
 
+    private Vector3 lastPosition = new Vector3(0, 0, 0);
+    private float distance = 0.0001f;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -43,12 +45,28 @@ public class RandomPatrollMovement : MonoBehaviour, Patroll
 
     public bool onPatroll(bool isPlayerFound)
     {
-        if (Vector3.Distance(transform.localPosition, destination) < distanceDiference || isPlayerFound)
+        if (Vector3.Distance(transform.localPosition, destination) < distanceDiference || isPlayerFound || isWallTouch(transform.position))
         {
             MoveToRandomPosition();
             agent.SetDestination(destination);
         }
 
         return false;
+    }
+
+    public bool isWallTouch(Vector3 vector)
+    {
+        Debug.Log(Vector3.Distance(lastPosition, vector) * Time.deltaTime);
+
+        if (Vector3.Distance(lastPosition, vector) * Time.deltaTime < distance)
+        {
+            lastPosition = vector;
+            return true;
+        }
+        else
+        {
+            lastPosition = vector;
+            return false;
+        }
     }
 }
