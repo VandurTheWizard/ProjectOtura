@@ -27,9 +27,9 @@ public class EnemiesSeeBack : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            if (Physics.Raycast(transform.position, transform.forward , detectionRange))
+            if (Physics.Raycast(transform.parent.transform.position, transform.parent.transform.forward , detectionRange))
             {
-                RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, detectionRange);
+                RaycastHit[] hits = Physics.RaycastAll(transform.parent.transform.position, transform.parent.transform.forward, detectionRange);
                 if (CheckIfPlayerFirst(hits))
                 {
 
