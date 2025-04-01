@@ -22,8 +22,11 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     private const int VISION = 1;
     private const int PATROLL = 2;
 
+    private Animator animator;
+
     private void Start()
     {
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         attack = GetComponent<Attack>();
         patroll = GetComponent<Patroll>();
@@ -57,6 +60,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
             StopCoroutine(coroutine);
             coroutine = null;
         }
+        animator.Play("Idle");
         destination = transform.position;
         agent.SetDestination(destination);
         stay = true;
@@ -72,6 +76,7 @@ public class EnemieAction : MonoBehaviour, EnemiesStatus
     {
         yield return new WaitForSeconds(time);
         stay = false;
+        animator.Play("Walking");
 
     }
 

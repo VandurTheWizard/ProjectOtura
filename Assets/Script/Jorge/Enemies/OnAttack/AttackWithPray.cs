@@ -20,9 +20,13 @@ public class AttackWithPray : MonoBehaviour, Attack, CompatibleSeeBack
 
     private bool ended;
 
+    private Animator animator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        animator = GetComponent<Animator>();
+        
         enemiesStatus = GetComponent<EnemiesStatus>();
         player = GameObject.FindGameObjectWithTag("Player");
         gestions = GetComponent<AudioGestions>();
@@ -34,6 +38,7 @@ public class AttackWithPray : MonoBehaviour, Attack, CompatibleSeeBack
         {
             return;
         }
+        animator.Play("Idle");
         attack = true;
         int waitTime = Random.Range(prayTime[0], prayTime[1]);
         enemiesStatus.onStay(waitTime);
@@ -50,11 +55,11 @@ public class AttackWithPray : MonoBehaviour, Attack, CompatibleSeeBack
         audioResp = null;
         attack = false;
         ended = true;
+        animator.Play("Walking");
     }
 
     public void resetAttack()
     {
-        
         Destroy(audioResp);
         if (coroutine != null)
         {

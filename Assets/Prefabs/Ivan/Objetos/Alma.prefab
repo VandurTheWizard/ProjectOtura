@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  experience: 40
+  experience: 200
   music: {fileID: 8300000, guid: 8b8f534551c994b4eaf5379316e0d4c9, type: 3}
 --- !u!65 &687486377939701569
 BoxCollider:
