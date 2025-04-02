@@ -9,12 +9,12 @@ public class ExperienceUsage : MonoBehaviour
     private ManaSpell[] manaSpell;
 
     private const int EXPLEVEL1 = 1050;
-    private const int EXPLEVEL2 = 1650;
-    private const int EXPLEVEL3 = 2300;
+    private const int EXPLEVEL2 = 1150;
+    private const int EXPLEVEL3 = 1200;
     private int[] expLevel = { EXPLEVEL1, EXPLEVEL2, EXPLEVEL3};
 
     private const int LIFELEVEL1 = 100;
-    private const int LIFELEVEL2 = 130;
+    private const int LIFELEVEL2 = 70;
     private const int LIFELEVEL3 = 70;
     private const int LIFELEVEL4 = 50;
 
