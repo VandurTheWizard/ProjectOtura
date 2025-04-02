@@ -12131,7 +12131,7 @@ MonoBehaviour:
   - {fileID: 75346597}
   palanca: {fileID: 664065111340146805}
   sound: {fileID: 8300000, guid: 9bcf1939025667b4b8893042678e1f0a, type: 3}
-  finalDoorEnd: {fileID: 0}
+  finalDoorEnd: {fileID: 9160222587253298120}
 --- !u!114 &8236258243488445069
 MonoBehaviour:
   m_ObjectHideFlags: 0
