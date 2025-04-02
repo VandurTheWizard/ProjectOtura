@@ -11,10 +11,10 @@ public class ToContinue : MonoBehaviour
     public int levelOfOpen;
 
     public GameObject canvas;
-    public Image imagen;
-    public TextMeshProUGUI text;
+    public Image progressBar;
+    public Image notProgressBar;
 
-    public AudioClip music;
+    public TextMeshPro text;
     private void Start()
     {
         interfaceOpen = GetComponent<ObjectOpened>();
@@ -38,7 +38,11 @@ public class ToContinue : MonoBehaviour
             }
             else
             {
-
+                if (!progressBar.gameObject.activeSelf)
+                {
+                    progressBar.gameObject.SetActive(true);
+                    notProgressBar.gameObject.SetActive(true);
+                }
                 onOpenDoor();
             }
         }
@@ -62,7 +66,7 @@ public class ToContinue : MonoBehaviour
         {
             onOpen();
         }
-        imagen.fillAmount = openPlayer / openTime;
+        progressBar.fillAmount = openPlayer / openTime;
     }
     private void OnTriggerExit(Collider other)
     {
@@ -74,6 +78,7 @@ public class ToContinue : MonoBehaviour
 
     private void onOpen()
     {
+        Destroy(canvas);
         interfaceOpen.onOpen();
 
     }

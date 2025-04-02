@@ -15,7 +15,6 @@ public class VisibleGoingToBacj : MonoBehaviour, Visible
     {
         Vector3 destination = transform.position + transform.forward * -1;
         Vector3 vision = GameObject.FindGameObjectWithTag("Player").transform.position;
-        transform.LookAt(vision);
         agent.SetDestination(destination);
         return true;
 

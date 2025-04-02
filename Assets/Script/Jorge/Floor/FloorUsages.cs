@@ -4,8 +4,6 @@ using UnityEngine;
 public class FloorUsages : MonoBehaviour
 {
     public static GameObject plane;
-    public GameObject[] level2;
-    public GameObject[] level3;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,16 +23,6 @@ public class FloorUsages : MonoBehaviour
         NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
         surface.navMeshData = null;
         surface.BuildNavMesh();
-    }
-
-    public static void activateLevel2()
-    {
-
-    }
-
-    public static void activateLevel3()
-    {
-
     }
 
 }

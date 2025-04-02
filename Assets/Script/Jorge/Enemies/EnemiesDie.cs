@@ -56,4 +56,10 @@ public class EnemiesDie : MonoBehaviour
             canvas.gameObject.SetActive(false);
         }
     }
+
+    public void dying()
+    {
+        Instantiate(soul, transform.parent.position, Quaternion.identity);
+        Destroy(transform.parent.gameObject);
+    }
 }
