@@ -12,17 +12,19 @@ public class MainMenuManager : MonoBehaviour
     public Slider sliderVolumenMusic;
     public Slider sliderVolumenSFX;
 
+    public AudioClip udio;
     void Start()
     {
         menu.SetActive(true);
         settings.SetActive(false);
 
-        float volumenMusic;
-        audioMixer.GetFloat("VolumenMusica", out volumenMusic);
-        sliderVolumenMusic.value = volumenMusic;
+        sliderVolumenMusic.value = AudioGestions.volumen;
         float volumenSFX;
         audioMixer.GetFloat("VolumenSFX", out volumenSFX);
         sliderVolumenSFX.value = volumenSFX;
+
+        AudioGestions audi = GetComponent<AudioGestions>();
+        audi.playBucle(udio);
     }
 
     public void StartGame(string sceneName)
@@ -61,7 +63,7 @@ public class MainMenuManager : MonoBehaviour
 
      public void SetVolumenMusic(float volumen)
     {
-        audioMixer.SetFloat("VolumenMusica", volumen);
+        AudioGestions.volumen = volumen;
     }
 
     public void SetVolumenSFX(float volumen)

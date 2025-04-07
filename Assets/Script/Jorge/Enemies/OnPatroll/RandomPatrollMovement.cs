@@ -58,7 +58,7 @@ public class RandomPatrollMovement : MonoBehaviour, Patroll
     {
         Debug.Log(Vector3.Distance(lastPosition, vector) * Time.deltaTime);
 
-        if (Vector3.Distance(lastPosition, vector) * Time.deltaTime < distance)
+        if (Vector3.Distance(lastPosition, vector) * Time.deltaTime < distance * Time.deltaTime)
         {
             lastPosition = vector;
             return true;
