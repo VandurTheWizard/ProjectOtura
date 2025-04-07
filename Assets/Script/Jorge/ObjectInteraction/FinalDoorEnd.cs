@@ -52,6 +52,7 @@ public class FinalDoorEnd : MonoBehaviour
 
     private void onOpen()
     {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(endScene);
     }
 }

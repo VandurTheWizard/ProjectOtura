@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Jorge/ExampleScenen.unity
+    path: Assets/Scenes/Game/MainMenu.unity
+    guid: 16b071bcebafff340848cf4d19ec0e6e
+  - enabled: 1
+    path: Assets/Scenes/Game/Game.unity
     guid: 670337c5a0d125344acc47a702c1e538
+  - enabled: 1
+    path: Assets/Scenes/Game/Win.unity
+    guid: e493138821a6aba4aa9eba873beb2eed
+  - enabled: 1
+    path: Assets/Scenes/Game/Lose.unity
+    guid: e588e94bb5e25f54fb96602880ca4299
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
